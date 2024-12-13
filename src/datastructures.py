@@ -20,17 +20,33 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        # fill this method and update the return
-        pass
+        member['id'] = self._generateId();
+        member['last_name'] = self.last_name;
+        self._members.append(member)
+        return member
 
     def delete_member(self, id):
-        # fill this method and update the return
-        pass
-
+        for member in self._members:
+            if member['id'] == id:
+                self._members.remove(member)
+                return {"done": True}
+            return  {"done": False}
+           
+        
+       
+    
     def get_member(self, id):
         # fill this method and update the return
         pass
 
-    # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
+
+    def __repr__(self):
+        return f"family lastname: {self.last_name}"
+
+    def seralize(self):
+        return{
+            'last_name': self.last_name,
+            'members': self._members
+        }
