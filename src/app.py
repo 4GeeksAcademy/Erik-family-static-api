@@ -94,6 +94,13 @@ def delete_member_by_id(id):
     else:
         return jsonify(result), 404
 
+@app.route('/members/<int:id>', methods=['GET'])
+def get_member_by_id(id):
+    member = jackson_family.get_member(id)
+    if member:
+        return jsonify(member), 200
+    else:
+        return jsonify({"error": "Member not found"}), 404  
 
 
 
